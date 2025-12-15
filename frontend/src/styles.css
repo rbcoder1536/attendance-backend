@@ -1,0 +1,322 @@
+/* ========= RESET ========= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #e5e7eb;
+}
+
+/* ========= LAYOUT ========= */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  animation: pageEnter 0.45s ease-out;
+}
+
+/* ========= SIDEBAR ========= */
+.sidebar {
+  width: 260px;
+  padding: 32px 24px;
+  background: linear-gradient(180deg, #020617, #020617cc);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  animation: sidebarIn 0.5s ease-out;
+}
+
+.sidebar h2 {
+  margin: 0 0 40px;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar a {
+  display: block;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #cbd5f5;
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(.4,0,.2,1);
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(6px);
+}
+
+.sidebar a.active {
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.25),
+    rgba(129, 140, 248, 0.25)
+  );
+  color: #e0f2fe;
+}
+
+/* ========= HEADINGS ========= */
+h1 {
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+/* ========= DASHBOARD CARDS ========= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.card {
+  padding: 28px;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.1),
+    rgba(255,255,255,0.03)
+  );
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  animation: cardPop 0.6s ease forwards;
+}
+
+.card span {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.card b {
+  display: block;
+  font-size: 42px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.18s; }
+
+/* ========= BUTTON ========= */
+.primary {
+  padding: 14px 26px;
+  border-radius: 14px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #020617;
+  box-shadow: 0 12px 30px rgba(56,189,248,0.35);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(129,140,248,0.45);
+}
+
+/* ========= TABLE ========= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+thead {
+  background: rgba(255,255,255,0.04);
+}
+
+tbody tr {
+  animation: rowFade 0.4s ease forwards;
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* ========= INPUT ========= */
+input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(15,23,42,0.6);
+  color: white;
+  margin-right: 10px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+/* ========= LOADER ========= */
+.loader-wrap {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top-color: #38bdf8;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+/* ========= ANIMATIONS ========= */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sidebarIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes cardPop {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes rowFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========= MOBILE ========= */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .content { padding: 24px; }
+}
+/* ======================
+   LOGIN PAGE
+====================== */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+}
+
+.login-card {
+  width: 380px;
+  padding: 40px 36px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.03)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.55);
+  animation: loginIn 0.6s ease-out;
+}
+
+.login-title {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-subtitle {
+  text-align: center;
+  opacity: 0.7;
+  margin: 8px 0 32px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.login-field label {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+.login-field input {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(15,23,42,0.6);
+  color: white;
+}
+
+.login-field input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.login-error {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(239,68,68,0.15);
+  color: #fecaca;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-hint {
+  margin-top: 18px;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+}
+
+@keyframes loginIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
